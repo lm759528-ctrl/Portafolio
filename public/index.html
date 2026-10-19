@@ -41,11 +41,32 @@ a{color:#C8F25A}a:hover{color:#E4FF9E}
 .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .card{position:relative;border:1px solid #2A2B26;border-radius:24px;background:#161713;padding:32px;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
 .card:hover{transform:translateY(-6px);border-color:#C8F25A}
-.proj{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center;text-decoration:none;color:inherit}
-.shot{position:relative;aspect-ratio:16/10;border-radius:20px;overflow:hidden;border:1px solid #2A2B26;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.proj:hover .shot{transform:scale(1.02) rotate(-.6deg)}
-.arrow{transition:transform .3s}
-.proj:hover .arrow{transform:translate(6px,-6px)}
+.proj{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center}
+.proj:nth-child(even) .gal{order:2}
+.stage{position:relative;padding-right:56px;padding-bottom:28px}
+.shot{display:block;width:100%;padding:0;cursor:zoom-in;position:relative;aspect-ratio:16/10;border-radius:20px;overflow:hidden;border:1px solid #2A2B26;background:#12130F;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.shot:hover{transform:scale(1.015);border-color:#C8F25A}
+.shot:focus-visible,.thumb:focus-visible,.lb button:focus-visible{outline:3px solid #C8F25A;outline-offset:3px}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.phone{position:absolute;right:0;bottom:0;width:22%;height:auto;border-radius:18px;border:5px solid #0E0F0C;box-shadow:0 0 0 1px #3A3B35,0 24px 48px rgba(0,0,0,.55);background:#0E0F0C}
+.cap{margin:4px 0 14px;font-size:14px;color:#B9B8B0;min-height:1.55em}
+.thumbs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin;scrollbar-color:#3A3B35 transparent}
+.thumb{flex:none;width:112px;padding:0;border:2px solid #2A2B26;border-radius:10px;overflow:hidden;background:#12130F;cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
+.thumb img{display:block;width:100%;height:auto}
+.thumb:hover{opacity:1}
+.thumb[aria-current="true"]{opacity:1;border-color:#C8F25A}
+.ptitle{font-family:'Bricolage Grotesque',serif;font-size:clamp(30px,3.4vw,44px);line-height:1.05;margin:0 0 16px;letter-spacing:-.02em}
+.tag{border:1px solid #3A3B35;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:#B9B8B0}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{background:#1F201C;border-radius:8px;padding:5px 11px;font-size:13px;font-weight:700;color:#C8F25A}
+.lb{width:min(1400px,96vw);max-width:none;max-height:96vh;padding:0;border:1px solid #2A2B26;border-radius:18px;background:#0E0F0C;color:#F2F1EC;font-family:Manrope,sans-serif}
+.lb,.lb *{box-sizing:border-box}
+.lb::backdrop{background:rgba(8,9,7,.88);backdrop-filter:blur(6px)}
+.lb img{display:block;width:100%;height:auto;max-height:calc(96vh - 76px);object-fit:contain;background:#12130F}
+.lb-bar{display:flex;align-items:center;gap:12px;padding:12px 14px}
+.lb-cap{flex:1;margin:0;font-size:15px;color:#B9B8B0}
+.lb button{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1.5px solid #3A3B35;border-radius:999px;background:transparent;color:#F2F1EC;cursor:pointer}
+.lb button:hover{border-color:#F2F1EC}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 .contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
 @supports (animation-timeline: view()){
@@ -56,7 +77,9 @@ a{color:#C8F25A}a:hover{color:#E4FF9E}
 .navlinks .hidem{display:none}
 .grid3,.steps{grid-template-columns:minmax(0,1fr)}
 .proj,.contact{grid-template-columns:minmax(0,1fr);gap:24px}
-.proj .shot{order:-1}
+.proj:nth-child(even) .gal{order:0}
+.stage{padding-right:36px;padding-bottom:20px}
+.phone{width:26%;border-width:4px;border-radius:14px}
 }
 @media (min-width:901px) and (max-width:1100px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (prefers-reduced-motion:reduce){.pf *,.pf *::before{animation:none !important;transition:none !important}}
@@ -128,66 +151,113 @@ a{color:#C8F25A}a:hover{color:#E4FF9E}
 <div class="wrap">
 <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 56px">
 <h2 class="h2">Trabajos<br><span style="color: #C8F25A">destacados</span></h2>
-<p style="max-width: 380px; color: #B9B8B0; margin: 0">Cada proyecto con el proceso que mejoró, lo que hice y cuánto tiempo ahorra.</p>
+<p style="max-width: 380px; color: #B9B8B0; margin: 0">Herramientas reales, mostradas con datos de ejemplo: qué problema resolvían y cómo lo encaré.</p>
 </div>
 <div style="display: flex; flex-direction: column; gap: clamp(56px,7vw,96px)">
 
-<div class="proj rv">
-<div class="shot" style="background: #12130F">
-<div style="position: absolute; inset: 0; display: flex; flex-direction: column; padding: 18px; gap: 12px">
-<div style="display: flex; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3A3B35"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #3A3B35"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #3A3B35"></span></div>
-<div style="flex: 1; border-radius: 12px; background: #1A1B17; padding: 22px; display: flex; flex-direction: column; gap: 12px">
-<div style="font-family: 'Bricolage Grotesque', serif; font-weight: 800; font-size: 28px; letter-spacing: .02em; color: #EDE6D3">VYLOR</div>
-<div style="height: 38px; border-radius: 10px; border: 1px solid #34352F; display: flex; align-items: center; padding: 0 14px; color: #77786F; font-size: 14px">Buscar producto…</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px">
-<div style="height: 54px; border-radius: 10px; background: #24251F"></div><div style="height: 54px; border-radius: 10px; background: #24251F"></div><div style="height: 54px; border-radius: 10px; background: #24251F"></div><div style="height: 54px; border-radius: 10px; background: #24251F"></div>
+<article class="proj rv" id="vylor-checklists">
+<div class="gal">
+<div class="stage">
+<button class="shot" type="button" aria-label="Ampliar captura"><img class="main" src="img/proyectos/vylor-01-checklists.webp" alt="Selector de checklists: formularios guiados y PDF completables." width="1800" height="1125" loading="lazy"></button>
+<img class="phone" src="img/proyectos/vylor-01-checklists-movil.webp" alt="Selector de checklists en el celular" width="585" height="1266" loading="lazy">
 </div>
-<div style="font-size: 12px; color: #77786F">[REEMPLAZAR POR CAPTURA REAL]</div>
-</div>
+<p class="cap" aria-live="polite">Selector de checklists: formularios guiados y PDF completables.</p>
+<div class="thumbs">
+<button class="thumb" type="button" data-src="img/proyectos/vylor-01-checklists.webp" data-cap="Selector de checklists: formularios guiados y PDF completables." aria-label="Ver captura 1: Selector de checklists: formularios guiados y PDF completables." aria-current="true"><img src="img/proyectos/vylor-01-checklists-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/vylor-02-checklist-plataformas.webp" data-cap="Formulario guiado por pasos, con barra de avance y pendientes por sección." aria-label="Ver captura 2: Formulario guiado por pasos, con barra de avance y pendientes por sección."><img src="img/proyectos/vylor-02-checklist-plataformas-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/vylor-03-permisos-gruas.webp" data-cap="Permisos de eslingado, de izaje y planes de izaje." aria-label="Ver captura 3: Permisos de eslingado, de izaje y planes de izaje."><img src="img/proyectos/vylor-03-permisos-gruas-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/vylor-04-biblioteca.webp" data-cap="Biblioteca de manuales, habilitaciones anuales y certificados de los equipos." aria-label="Ver captura 4: Biblioteca de manuales, habilitaciones anuales y certificados de los equipos."><img src="img/proyectos/vylor-04-biblioteca-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/vylor-05-codigos-qr.webp" data-cap="Generador de códigos QR con logo, listos para imprimir a 300 PPP." aria-label="Ver captura 5: Generador de códigos QR con logo, listos para imprimir a 300 PPP."><img src="img/proyectos/vylor-05-codigos-qr-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
 </div>
 </div>
 <div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span style="border: 1px solid #3A3B35; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; color: #B9B8B0">Herramienta interna</span><span style="border: 1px solid #3A3B35; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; color: #B9B8B0">PC + celular</span></div>
-<h3 style="font-family: 'Bricolage Grotesque', serif; font-size: clamp(30px,3.4vw,44px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; display: flex; gap: 14px; align-items: start">Vylor — visor de hojas de seguridad <svg class="arrow" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8F25A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 6px"><path d="M7 17L17 7M8 7h9v9"></path></svg></h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span class="tag">Herramienta interna</span><span class="tag">PC + celular</span></div>
+<h3 class="ptitle">Vylor · Checklists de seguridad industrial</h3>
+<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> los operarios completaban checklists y permisos de trabajo en papel, en obra y muchas veces sin señal.</p>
+<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> una app web donde completan cada checklist o permiso paso a paso. Guarda borradores sin conexión y al terminar genera el PDF final firmado.</p>
+<div class="stack" aria-label="Tecnologías"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Supabase</span></div>
+<p style="margin: 22px 0 0; font-size: 14px; color: #8E8D85">5 capturas · datos de ejemplo</p>
+</div>
+</article>
+
+<article class="proj rv" id="vylor-hojas">
+<div class="gal">
+<div class="stage">
+<button class="shot" type="button" aria-label="Ampliar captura"><img class="main" src="img/proyectos/hojas-01-listado.webp" alt="Listado de productos con buscador y filtros." width="1800" height="1125" loading="lazy"></button>
+<img class="phone" src="img/proyectos/hojas-03-ficha-movil.webp" alt="Ficha de un producto en el celular" width="585" height="1266" loading="lazy">
+</div>
+<p class="cap" aria-live="polite">Listado de productos con buscador y filtros.</p>
+<div class="thumbs">
+<button class="thumb" type="button" data-src="img/proyectos/hojas-01-listado.webp" data-cap="Listado de productos con buscador y filtros." aria-label="Ver captura 1: Listado de productos con buscador y filtros." aria-current="true"><img src="img/proyectos/hojas-01-listado-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/hojas-02-filtro-lubricantes.webp" data-cap="Filtro por tipo de producto aplicado: lubricantes." aria-label="Ver captura 2: Filtro por tipo de producto aplicado: lubricantes."><img src="img/proyectos/hojas-02-filtro-lubricantes-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/hojas-03-ficha.webp" data-cap="Ficha del producto con pictogramas, sus 16 secciones y primeros auxilios." aria-label="Ver captura 3: Ficha del producto con pictogramas, sus 16 secciones y primeros auxilios."><img src="img/proyectos/hojas-03-ficha-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+</div>
+</div>
+<div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span class="tag">Consulta rápida</span><span class="tag">PC + celular</span></div>
+<h3 class="ptitle">Vylor · Hojas de seguridad</h3>
 <p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> encontrar rápido la hoja de seguridad de un producto, en planta o desde el celular.</p>
-<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> [TU ROL Y STACK].</p>
-<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Resultado:</strong> [RESULTADO CONCRETO].</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px">
-<a class="btn btn-main" href="[LINK DEMO]" target="_blank" rel="noopener">Abrir demo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-<span style="font-size: 14px; color: #8E8D85">Versión con datos de ejemplo</span>
+<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> un sitio para consultar las 46 hojas de seguridad, con buscador, filtros por tipo de producto y clasificación SGA, pictogramas, bloque de emergencia y acceso al PDF original.</p>
+<div class="stack" aria-label="Tecnologías"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Sin framework</span></div>
+<p style="margin: 22px 0 0; font-size: 14px; color: #8E8D85">3 capturas · datos de ejemplo</p>
 </div>
-</div>
-</div>
+</article>
 
-<div class="proj rv">
-<div class="shot" style="background: #1B2547; display: grid; place-items: center"><span style="font-family: 'Bricolage Grotesque', serif; font-weight: 700; font-size: 22px; color: #AFC2FF">[CAPTURA PROYECTO 2]</span></div>
+<article class="proj rv" id="planta-segura">
+<div class="gal">
+<div class="stage">
+<button class="shot" type="button" aria-label="Ampliar captura"><img class="main" src="img/proyectos/demo-00-ingreso.webp" alt="Ingreso con selección de rol: Operario o Supervisión." width="1800" height="1125" loading="lazy"></button>
+<img class="phone" src="img/proyectos/demo-03-permisos-movil.webp" alt="Permisos de trabajo en el celular" width="585" height="1266" loading="lazy">
+</div>
+<p class="cap" aria-live="polite">Ingreso con selección de rol: Operario o Supervisión.</p>
+<div class="thumbs">
+<button class="thumb" type="button" data-src="img/proyectos/demo-00-ingreso.webp" data-cap="Ingreso con selección de rol: Operario o Supervisión." aria-label="Ver captura 1: Ingreso con selección de rol: Operario o Supervisión." aria-current="true"><img src="img/proyectos/demo-00-ingreso-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-01-inicio.webp" data-cap="Tablero con indicadores, vencimientos próximos y accesos rápidos." aria-label="Ver captura 2: Tablero con indicadores, vencimientos próximos y accesos rápidos."><img src="img/proyectos/demo-01-inicio-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-02-checklists.webp" data-cap="Checklists de inspección." aria-label="Ver captura 3: Checklists de inspección."><img src="img/proyectos/demo-02-checklists-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-03-permisos.webp" data-cap="Permisos de trabajo con flujo de aprobación y estados." aria-label="Ver captura 4: Permisos de trabajo con flujo de aprobación y estados."><img src="img/proyectos/demo-03-permisos-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-04-correos.webp" data-cap="Bandeja de alertas automáticas de vencimiento." aria-label="Ver captura 5: Bandeja de alertas automáticas de vencimiento."><img src="img/proyectos/demo-04-correos-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-05-hojas.webp" data-cap="Hojas de seguridad." aria-label="Ver captura 6: Hojas de seguridad."><img src="img/proyectos/demo-05-hojas-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-06-historial.webp" data-cap="Reportes con gráficos: checklists por mes e ítems con más defectos." aria-label="Ver captura 7: Reportes con gráficos: checklists por mes e ítems con más defectos."><img src="img/proyectos/demo-06-historial-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-07-viandas.webp" data-cap="Pedidos semanales de viandas con exportación a CSV." aria-label="Ver captura 8: Pedidos semanales de viandas con exportación a CSV."><img src="img/proyectos/demo-07-viandas-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-08-capacitaciones.webp" data-cap="Capacitaciones en video con cuestionario y certificado." aria-label="Ver captura 9: Capacitaciones en video con cuestionario y certificado."><img src="img/proyectos/demo-08-capacitaciones-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/demo-09-qr.webp" data-cap="Etiquetas QR por equipo, checklist y permiso." aria-label="Ver captura 10: Etiquetas QR por equipo, checklist y permiso."><img src="img/proyectos/demo-09-qr-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+</div>
+</div>
 <div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span style="border: 1px solid #3A3B35; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; color: #B9B8B0">[RUBRO]</span></div>
-<h3 style="font-family: 'Bricolage Grotesque', serif; font-size: clamp(30px,3.4vw,44px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; display: flex; gap: 14px; align-items: start">[NOMBRE PROYECTO 2] <svg class="arrow" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8F25A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 6px"><path d="M7 17L17 7M8 7h9v9"></path></svg></h3>
-<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> [QUÉ NECESITABA EL CLIENTE].</p>
-<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> [TU ROL Y STACK].</p>
-<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Resultado:</strong> [RESULTADO CONCRETO].</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px">
-<a class="btn btn-main" href="[LINK DEMO]" target="_blank" rel="noopener">Abrir demo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-<span style="font-size: 14px; color: #8E8D85">Versión con datos de ejemplo</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span class="tag">Demo integral</span><span class="tag">Una sola página</span></div>
+<h3 class="ptitle">Planta Segura · Demo</h3>
+<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> mostrar en un solo lugar todo lo que se puede digitalizar en la seguridad de una planta.</p>
+<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> una demo de una sola página, sin servidor, que junta todo lo anterior bajo una marca genérica: checklists, permisos con aprobación, alertas por correo, hojas de seguridad, reportes, viandas, capacitaciones en video y QR.</p>
+<div class="stack" aria-label="Tecnologías"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Sin servidor</span></div>
+<p style="margin: 22px 0 0; font-size: 14px; color: #8E8D85">10 capturas · datos de ejemplo</p>
 </div>
-</div>
-</div>
+</article>
 
-<div class="proj rv">
-<div class="shot" style="background: #3A2216; display: grid; place-items: center"><span style="font-family: 'Bricolage Grotesque', serif; font-weight: 700; font-size: 22px; color: #FFC2A1">[CAPTURA PROYECTO 3]</span></div>
+<article class="proj rv" id="buen-plato">
+<div class="gal">
+<div class="stage">
+<button class="shot" type="button" aria-label="Ampliar captura"><img class="main" src="img/proyectos/buenplato-00-login.webp" alt="Ingreso." width="1800" height="1125" loading="lazy"></button>
+<img class="phone" src="img/proyectos/buenplato-01-empleado-movil.webp" alt="Vista del empleado en el celular" width="585" height="1266" loading="lazy">
+</div>
+<p class="cap" aria-live="polite">Ingreso.</p>
+<div class="thumbs">
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-00-login.webp" data-cap="Ingreso." aria-label="Ver captura 1: Ingreso." aria-current="true"><img src="img/proyectos/buenplato-00-login-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-01-empleado.webp" data-cap="El empleado elige sus viandas del período, con guardado automático." aria-label="Ver captura 2: El empleado elige sus viandas del período, con guardado automático."><img src="img/proyectos/buenplato-01-empleado-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-02-admin-dashboard.webp" data-cap="Panel del administrador con métricas de respuesta y pedido por día." aria-label="Ver captura 3: Panel del administrador con métricas de respuesta y pedido por día."><img src="img/proyectos/buenplato-02-admin-dashboard-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-03-admin-menu.webp" data-cap="Armado del menú por día, con fotos de los platos." aria-label="Ver captura 4: Armado del menú por día, con fotos de los platos."><img src="img/proyectos/buenplato-03-admin-menu-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-04-admin-elecciones.webp" data-cap="Control de las respuestas de cada empleado." aria-label="Ver captura 5: Control de las respuestas de cada empleado."><img src="img/proyectos/buenplato-04-admin-elecciones-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+<button class="thumb" type="button" data-src="img/proyectos/buenplato-05-admin-historial.webp" data-cap="Historial de períodos anteriores." aria-label="Ver captura 6: Historial de períodos anteriores."><img src="img/proyectos/buenplato-05-admin-historial-thumb.webp" alt="" width="360" height="225" loading="lazy"></button>
+</div>
+</div>
 <div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span style="border: 1px solid #3A3B35; border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; color: #B9B8B0">[RUBRO]</span></div>
-<h3 style="font-family: 'Bricolage Grotesque', serif; font-size: clamp(30px,3.4vw,44px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; display: flex; gap: 14px; align-items: start">[NOMBRE PROYECTO 3] <svg class="arrow" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C8F25A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 6px"><path d="M7 17L17 7M8 7h9v9"></path></svg></h3>
-<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> [QUÉ NECESITABA EL CLIENTE].</p>
-<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> [TU ROL Y STACK].</p>
-<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Resultado:</strong> [RESULTADO CONCRETO].</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 26px">
-<a class="btn btn-main" href="[LINK DEMO]" target="_blank" rel="noopener">Abrir demo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></a>
-<span style="font-size: 14px; color: #8E8D85">Versión con datos de ejemplo</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px"><span class="tag">Gestión</span><span class="tag">Pensada para celular</span></div>
+<h3 class="ptitle">Buen Plato · Gestión de viandas</h3>
+<p style="margin: 0 0 12px; color: #B9B8B0"><strong style="color: #F2F1EC">El problema:</strong> juntar cada semana qué vianda quiere cada empleado y armar el pedido sin planillas ni mensajes sueltos.</p>
+<p style="margin: 0; color: #B9B8B0"><strong style="color: #F2F1EC">Lo que hice:</strong> una app donde los empleados eligen su vianda de la semana desde el celular, con guardado automático, y el administrador gestiona menús, plazos, pedidos e historial.</p>
+<div class="stack" aria-label="Tecnologías"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Supabase</span></div>
+<p style="margin: 22px 0 0; font-size: 14px; color: #8E8D85">6 capturas · datos de ejemplo</p>
 </div>
-</div>
-</div>
+</article>
 
 </div>
 </div>
@@ -223,5 +293,38 @@ a{color:#C8F25A}a:hover{color:#E4FF9E}
 </section>
 
 </div>
+<dialog class="lb" id="lb" aria-label="Captura ampliada">
+<img id="lb-img" src="" alt="">
+<div class="lb-bar">
+<button type="button" id="lb-prev" aria-label="Captura anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+<button type="button" id="lb-next" aria-label="Captura siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<p class="lb-cap" id="lb-cap"></p>
+<button type="button" id="lb-close" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+</dialog>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lb-img'),cap=document.getElementById('lb-cap'),cur=null;
+  function show(gal,i){
+    var t=gal.querySelectorAll('.thumb'),b=t[i],main=gal.querySelector('.main');
+    t.forEach(function(x){x.removeAttribute('aria-current')});
+    b.setAttribute('aria-current','true');
+    main.src=b.dataset.src;main.alt=b.dataset.cap;
+    gal.querySelector('.cap').textContent=b.dataset.cap;
+    gal.dataset.i=i;
+    if(lb.open){img.src=b.dataset.src;img.alt=b.dataset.cap;cap.textContent=(i+1)+' / '+t.length+' · '+b.dataset.cap}
+  }
+  function step(d){var n=cur.querySelectorAll('.thumb').length;show(cur,((+cur.dataset.i||0)+d+n)%n)}
+  document.querySelectorAll('.gal').forEach(function(gal){
+    gal.querySelectorAll('.thumb').forEach(function(b,i){b.addEventListener('click',function(){show(gal,i)})});
+    gal.querySelector('.shot').addEventListener('click',function(){cur=gal;lb.showModal();show(gal,+gal.dataset.i||0)});
+  });
+  document.getElementById('lb-prev').addEventListener('click',function(){step(-1)});
+  document.getElementById('lb-next').addEventListener('click',function(){step(1)});
+  document.getElementById('lb-close').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
+})();
+</script>
 </body>
 </html>
